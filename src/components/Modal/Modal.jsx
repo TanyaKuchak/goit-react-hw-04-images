@@ -3,10 +3,16 @@ import { createPortal } from 'react-dom';
 import { Component } from 'react';
 import { ModalContainer, Overlay } from './Modal.styled';
 
-const modalRoot = document.querySelector('#modal-root');
+const modalRoot = document.getElementById('modal-root');
 
 export class Modal extends Component {
+  static defaultProps = {
+    url: '',
+    onClose: null,
+  };
+
   static propTypes = {
+    url: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
   };
 
@@ -39,10 +45,6 @@ export class Modal extends Component {
         </ModalContainer>
       </Overlay>,
       modalRoot
-      //   <div clasName = { css.Overlay } onClick = { this.onModalOpen } >
-      //     <div className={css.Modal}>{this.props.children}</div>
-      //   </div>,
-      //   modalPortal
     );
   }
 }

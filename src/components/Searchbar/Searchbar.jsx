@@ -7,6 +7,8 @@ import {
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
+import { FcSearch } from 'react-icons/fc';
+
 export const Searchbar = ({ onSubmit }) => {
   const initialValues = {
     searchWord: '',
@@ -26,7 +28,8 @@ export const Searchbar = ({ onSubmit }) => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <SearchForm autoComplete="of">
           <ButtonSearch type="submit">
-            <span>Search</span>
+            <FcSearch style={{ fontSize: '24px' }} />
+            <span></span>
           </ButtonSearch>
           <label htmlFor="searchWord"></label>
           <SearchFormInput

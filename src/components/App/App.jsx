@@ -3,7 +3,6 @@ import { Searchbar } from 'components/Searchbar';
 import React, { Component } from 'react';
 import * as API from '../../serviseAPI/api';
 import { ImageGallery } from 'components/ImageGallery';
-import { Loader } from 'components/Loader';
 import { Button } from '../Button';
 import { Notification } from 'components/Notification';
 
@@ -56,8 +55,7 @@ export class App extends Component {
         <Container>
           <Searchbar onSubmit={this.onSubmit} />
         </Container>
-        {status === 'idle' && <Text>Enter key word on form</Text>}
-        {status === 'pending' && <Loader />}
+        {status === 'idle' && <Text>Enter search query on form</Text>}
         {gallery.length > 0 && (
           <Container>
             <ImageGallery gallery={gallery} />
