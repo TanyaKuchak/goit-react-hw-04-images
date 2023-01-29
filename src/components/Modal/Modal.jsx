@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Component } from 'react';
 import { ModalContainer, Overlay } from './Modal.styled';
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
   static defaultProps = {
@@ -14,6 +14,7 @@ export class Modal extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
+    // children: PropTypes.node.isRequired,
   };
 
   componentDidMount() {
@@ -30,7 +31,7 @@ export class Modal extends Component {
     }
   };
 
-  onModalOpen = event => {
+  onCloseBackdrop = event => {
     if (event.currentTarget === event.target) {
       this.props.onClose();
     }
@@ -38,10 +39,12 @@ export class Modal extends Component {
 
   render() {
     const { largeImageURL, tags } = this.props;
+    // const { children } = this.props;
     return createPortal(
-      <Overlay onClick={this.onModalOpen}>
+      <Overlay onClick={this.onCloseBackdrop}>
         <ModalContainer>
-          <img src={largeImageURL} alt={tags} width="850" />
+          {/* {children} */}
+          <img src={largeImageURL} alt={tags} width="900" height="680" />
         </ModalContainer>
       </Overlay>,
       modalRoot
