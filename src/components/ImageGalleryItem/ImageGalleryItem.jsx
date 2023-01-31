@@ -10,6 +10,7 @@ export class ImageGalleryItem extends Component {
   };
 
   static propTypes = {
+    id: PropTypes.number,
     webformatURL: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,
   };
@@ -24,19 +25,29 @@ export class ImageGalleryItem extends Component {
 
   onClose = () => {
     this.setState({ isModalOpen: false });
+    // this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }));
+    // this.setState(({ isModalOpen }) => ({
+    //   isModalOpen: !isModalOpen,
+    // }));
   };
 
   render() {
+    const { onOpen, onClose } = this;
     const { isModalOpen } = this.state;
-    const { webformatURL, largeImageURL } = this.props;
+    const { id, webformatURL, largeImageURL } = this.props;
     return (
       <>
-        <GalleryItem>
-          <Image src={webformatURL} alt={webformatURL} onClick={this.onOpen} />
+        <GalleryItem onClick={onOpen}>
+          {isModalOpen && (
+            <Modal close={onClose}>
+              <Image close={onClose} src={largeImageURL} alt={largeImageURL} />
+            </Modal>
+          )}
+          <Image src={webformatURL} alt={webformatURL} />
         </GalleryItem>
-        {isModalOpen && (
-          <Modal url={largeImageURL} onModalClose={this.onClose} />
-        )}
+        {/* {isModalOpen && (
+          <Modal largeImageURL={largeImageURL} onModalClose={this.onClose} />
+        )} */}
       </>
     );
   }

@@ -2,7 +2,7 @@ import { ImageGalleryItem } from 'components/ImageGalleryItem';
 import { ImageGalleryList } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
 
-export function ImageGallery({ gallery }) {
+export function ImageGallery({ gallery, onOpen }) {
   return (
     <ImageGalleryList>
       {gallery.map(({ id, webformatURL, largeImageURL }) => {
@@ -11,6 +11,7 @@ export function ImageGallery({ gallery }) {
             key={id}
             webformatURL={webformatURL}
             largeImageURL={largeImageURL}
+            onClick={() => onOpen({ src: largeImageURL, alt: webformatURL })}
           />
         );
       })}

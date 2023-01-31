@@ -2,6 +2,7 @@ import { Container, Text } from './App.styled';
 import { Searchbar } from 'components/Searchbar';
 import React, { Component } from 'react';
 import * as API from '../../serviseAPI/api';
+import { Loader } from 'components/Loader/Loader';
 import { ImageGallery } from 'components/ImageGallery';
 import { Button } from '../Button';
 import { Notification } from 'components/Notification';
@@ -56,6 +57,7 @@ export class App extends Component {
           <Searchbar onSubmit={this.onSubmit} />
         </Container>
         {status === 'idle' && <Text>Enter search query on form</Text>}
+        {status === 'pending' && <Loader />}
         {gallery.length > 0 && (
           <Container>
             <ImageGallery gallery={gallery} />
