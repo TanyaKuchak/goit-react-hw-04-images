@@ -11,7 +11,12 @@ export function ImageGallery({ gallery, onOpen }) {
             key={id}
             webformatURL={webformatURL}
             largeImageURL={largeImageURL}
-            onClick={() => onOpen({ src: largeImageURL, alt: webformatURL })}
+            onClick={() =>
+              onOpen({
+                src: largeImageURL,
+                alt: webformatURL,
+              })
+            }
           />
         );
       })}

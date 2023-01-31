@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ModalContainer, Overlay, Span } from './Modal.styled';
+import { ModalContainer, Overlay } from './Modal.styled';
 
 export class Modal extends Component {
   componentDidMount() {
@@ -13,25 +13,22 @@ export class Modal extends Component {
   }
 
   onKeyDown = event => {
-    if (event.code !== 'Escape') {
+    if (event.code === 'Escape') {
       this.props.close();
     }
   };
 
-  onCloseBackdrop = ({ target, currentTarget }) => {
-    if (target === currentTarget) {
-      this.props.close();
+  onCloseBackdrop = event => {
+    if (event.currentTarget === event.target) {
+      this.props.onClose();
     }
   };
 
   render() {
-    // const { onCloseBackdrop } = this;
-    const { children, close } = this.props;
+    const { children } = this.props;
     return (
-      <Overlay onClick={close}>
-        <ModalContainer>
-          <Span onClick={close}>X</Span> {children}
-        </ModalContainer>
+      <Overlay onClick={this.onCloseBackdrop}>
+        <ModalContainer>{children}</ModalContainer>
       </Overlay>
     );
   }
