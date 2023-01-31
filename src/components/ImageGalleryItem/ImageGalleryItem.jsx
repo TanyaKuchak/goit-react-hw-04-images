@@ -34,7 +34,7 @@ export class ImageGalleryItem extends Component {
   render() {
     const { onOpen, onClose } = this;
     const { isModalOpen } = this.state;
-    const { id, webformatURL, largeImageURL } = this.props;
+    const { webformatURL, largeImageURL } = this.props;
     return (
       <>
         <GalleryItem onClick={onOpen}>

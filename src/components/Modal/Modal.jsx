@@ -25,7 +25,7 @@ export class Modal extends Component {
   };
 
   render() {
-    const { onCloseBackdrop } = this;
+    // const { onCloseBackdrop } = this;
     const { children, close } = this.props;
     return (
       <Overlay onClick={close}>
